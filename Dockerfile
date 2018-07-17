@@ -2,7 +2,7 @@ FROM beevelop/java
 
 MAINTAINER Li Zheng <flyskywhy@gmail.com>
 
-# NODEJS_VERSION here refers to [Node.js Packer](https://github.com/pmq20/node-packer) .
+# NODEJS_VERSION here refers to [Node.js Packer](https://github.com/pmq20/node-packer)
 
 ENV NODEJS_VERSION=8.3.0 \
     ANT_HOME="/usr/share/ant" \
