@@ -27,10 +27,12 @@ RUN rm /bin/sh \
         libstdc++6:i386 \
         libssl-dev \
         maven \
+        openssh-client \
         python \
         python-dev \
         python-distribute \
         python-pip \
+        rsync \
         ruby \
         squashfs-tools \
         sshpass \
