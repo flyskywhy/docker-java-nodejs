@@ -5,12 +5,11 @@ MAINTAINER Li Zheng <flyskywhy@gmail.com>
 # NODEJS_VERSION here refers to [Node.js Packer](https://github.com/pmq20/node-packer)
 
 ENV NODEJS_VERSION=8.3.0 \
+    GIT_VERSION=2.7.4 \
     ANT_HOME="/usr/share/ant" \
     MAVEN_HOME="/usr/share/maven" \
     GRADLE_HOME="/usr/share/gradle" \
     PATH=$PATH:/opt/node/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
-
-WORKDIR /opt/node
 
 RUN rm /bin/sh \
     && ln -s /bin/bash /bin/sh \
@@ -18,14 +17,20 @@ RUN rm /bin/sh \
     && apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends \
         ant \
+        autoconf \
         build-essential \
         ca-certificates \
+        checkinstall \
         curl \
-        git \
+        dpkg-dev \
+        gettext \
         gradle \
+        libcurl4-openssl-dev \
+        libexpat1-dev \
         libncurses5:i386 \
         libstdc++6:i386 \
         libssl-dev \
+        libz-dev \
         maven \
         openssh-client \
         python \
@@ -38,6 +43,17 @@ RUN rm /bin/sh \
         sshpass \
         wget \
         zlib1g:i386 \
+    && mkdir -p /opt/git \
+    && cd /opt/git \
+    && curl -sL https://codeload.github.com/git/git/tar.gz/v${GIT_VERSION} | tar xz --strip-components=1\
+    && make configure \
+    && ./configure --with-openssl --with-curl \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -fr git \
+    && mkdir -p /opt/node \
+    && cd /opt/node \
     && curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 \
     && npm config set registry https://registry.npm.taobao.org \
     && npm config set unsafe-perm=true \
