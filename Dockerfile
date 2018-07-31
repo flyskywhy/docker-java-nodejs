@@ -59,6 +59,7 @@ RUN rm /bin/sh \
     && npm config set unsafe-perm=true \
     && npm install -g \
         ali-cdn-cli@1.0.1 \
+        appcenter-cli@1.1.0 \
         bunyan@1.8.12 \
         mocha@3.5.3 \
         pm2@2.10.1 \
