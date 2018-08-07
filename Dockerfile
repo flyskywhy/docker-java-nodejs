@@ -14,8 +14,10 @@ ENV NODEJS_VERSION=8.3.0 \
 RUN rm /bin/sh \
     && ln -s /bin/bash /bin/sh \
     && dpkg --add-architecture i386 \
-    && apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get -qqy update \
+    && apt-get -qqy install --no-install-recommends \
         ant \
         autoconf \
         build-essential \
@@ -24,6 +26,7 @@ RUN rm /bin/sh \
         curl \
         dpkg-dev \
         gettext \
+        google-chrome-stable \
         gradle \
         libcurl4-openssl-dev \
         libexpat1-dev \
@@ -66,9 +69,11 @@ RUN rm /bin/sh \
         react-native-cli@2.0.1 \
         supervisor@0.12.0 \
     && npm cache clean --force \
+    && apt-get autoremove -y \
+    && apt-get clean \
     && rm -rf \
         /var/lib/apt/lists/* \
+        /var/cache/apt/* \
         /tmp/* \
         /var/tmp/* \
-    && apt-get autoremove -y \
-    && apt-get clean
+        /etc/apt/sources.list.d/google-chrome.list
