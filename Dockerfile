@@ -25,21 +25,28 @@ RUN rm /bin/sh \
         checkinstall \
         curl \
         dpkg-dev \
+        fonts-liberation \
         gconf-service \
         gconf-service-backend \
         gettext \
         gradle \
         indicator-application \
         libappindicator1 \
+        libasound2 \
         libcurl4-openssl-dev \
         libdbusmenu-gtk4 \
         libexpat1-dev \
         libgconf-2-4 \
         libindicator7 \
         libncurses5:i386 \
+        libnspr4 \
+        libnss3 \
         libstdc++6:i386 \
         libssl-dev \
+        libxss1 \
+        libxtst6 \
         libz-dev \
+        lsb-release \
         maven \
         openssh-client \
         python \
@@ -51,6 +58,7 @@ RUN rm /bin/sh \
         squashfs-tools \
         sshpass \
         wget \
+        xdg-utils \
         zlib1g:i386 \
     && wget -q -O chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=lnx%2Fchrome64_61.0.3163.79.deb \
     && dpkg -i chrome.deb \
