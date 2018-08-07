@@ -11,11 +11,11 @@ ENV NODEJS_VERSION=8.3.0 \
     GRADLE_HOME="/usr/share/gradle" \
     PATH=$PATH:/opt/node/bin:$ANT_HOME/bin:$MAVEN_HOME/bin:$GRADLE_HOME/bin
 
+# chrome 68 will cause `Lost UI shared context` , so use chrome 61 from https://www.slimjet.com/chrome/google-chrome-old-version.php
+
 RUN rm /bin/sh \
     && ln -s /bin/bash /bin/sh \
     && dpkg --add-architecture i386 \
-    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
     && apt-get -qqy update \
     && apt-get -qqy install --no-install-recommends \
         ant \
@@ -25,12 +25,17 @@ RUN rm /bin/sh \
         checkinstall \
         curl \
         dpkg-dev \
+        gconf-service \
+        gconf-service-backend \
         gettext \
-        google-chrome-stable \
         gradle \
+        indicator-application \
+        libappindicator1 \
         libcurl4-openssl-dev \
+        libdbusmenu-gtk4 \
         libexpat1-dev \
         libgconf-2-4 \
+        libindicator7 \
         libncurses5:i386 \
         libstdc++6:i386 \
         libssl-dev \
@@ -47,6 +52,9 @@ RUN rm /bin/sh \
         sshpass \
         wget \
         zlib1g:i386 \
+    && wget -o chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=lnx%2Fchrome64_61.0.3163.79.deb \
+    && dpkg -i chrome.deb \
+    && rm chrome.deb \
     && mkdir -p /opt/git \
     && cd /opt/git \
     && curl -sL https://codeload.github.com/git/git/tar.gz/v${GIT_VERSION} | tar xz --strip-components=1\
@@ -76,5 +84,4 @@ RUN rm /bin/sh \
         /var/lib/apt/lists/* \
         /var/cache/apt/* \
         /tmp/* \
-        /var/tmp/* \
-        /etc/apt/sources.list.d/google-chrome.list
+        /var/tmp/*
