@@ -30,6 +30,7 @@ RUN rm /bin/sh \
         gradle \
         libcurl4-openssl-dev \
         libexpat1-dev \
+        libgconf-2-4 \
         libncurses5:i386 \
         libstdc++6:i386 \
         libssl-dev \
