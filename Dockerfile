@@ -52,7 +52,7 @@ RUN rm /bin/sh \
         sshpass \
         wget \
         zlib1g:i386 \
-    && wget -o chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=lnx%2Fchrome64_61.0.3163.79.deb \
+    && wget -q -O chrome.deb https://www.slimjet.com/chrome/download-chrome.php?file=lnx%2Fchrome64_61.0.3163.79.deb \
     && dpkg -i chrome.deb \
     && rm chrome.deb \
     && mkdir -p /opt/git \
