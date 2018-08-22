@@ -54,6 +54,7 @@ RUN rm /bin/sh \
         python-distribute \
         python-pip \
         rsync \
+        rsyslog \
         ruby \
         squashfs-tools \
         sshpass \
