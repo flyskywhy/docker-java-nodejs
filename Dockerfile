@@ -24,6 +24,7 @@ RUN rm /bin/sh \
         ca-certificates \
         checkinstall \
         curl \
+        dnsutils \
         dpkg-dev \
         fonts-liberation \
         gconf-service \
