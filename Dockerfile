@@ -4,7 +4,7 @@ MAINTAINER Li Zheng <flyskywhy@gmail.com>
 
 # NODEJS_VERSION here refers to [Node.js Packer](https://github.com/pmq20/node-packer)
 
-ENV NODEJS_VERSION=10.19.0 \
+ENV NODEJS_VERSION=14.17.6 \
     GIT_VERSION=2.7.4 \
     ANT_HOME="/usr/share/ant" \
     MAVEN_HOME="/usr/share/maven" \
